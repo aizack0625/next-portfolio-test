@@ -8,7 +8,19 @@ interface ParticlesOptions {
   fullScreen?: {
     enable: boolean;
   };
-  [key: string]: any; // その他のオプションがある場合
+  particles?: {
+    number?: {
+      value?: number;
+      density?: {
+        enable?: boolean;
+        value_area?: number;
+      };
+    };
+    color?: {
+      value?: string;
+    };
+  };
+  [key: string]: Record<string, unknown> | undefined;
 }
 
 interface ParticlesBackgroundProps {
