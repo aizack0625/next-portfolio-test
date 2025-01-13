@@ -1,0 +1,708 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*==============================================
+
+  Base Style
+
+================================================*/
+
+:root {
+  /* フォントサイズ */
+  font-size: 62.5%;
+  --font-xs: 1.2rem;
+  --font-s: 1.4rem;
+  --font-m: 1.8rem;
+  --font-l: 2.4rem;
+  --font-xl: 3.8rem;
+
+  /* ライト/ダークモード共通の変数 */
+  --header-height: 60px;
+
+  /* ライトモードのデフォルト値 */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  /* カラー */
+  --color-primary: skyblue;
+  --color-primary-rgb: 135, 206, 235;
+  --color-contrast: #fff;
+  --color-contrast-rgb: 255, 255, 255;
+  /* テキストカラー */
+  --color-text: #000;
+  /* ヘッダーの高さ */
+  --header-height: 60px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: var(--font-m);
+  color: var(--color-text);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+
+canvas {
+  display: block;
+}
+
+h3 {
+  text-stroke: 2px #fff;
+}
+
+/*==============================================
+
+  Dark Mode
+
+================================================*/
+/* body{
+  color: var(--main-text);
+  background: var(--main-bg);
+}
+.light-mode{
+  --main-text: #000;
+  --main-bg: #fff;
+}
+.dark-mode{
+  --main-text: #fff;
+  --main-bg: #202124;
+} */
+
+/*==============================================
+
+  Container
+
+================================================*/
+.container {
+  padding: 0 20px;
+  margin: 0 auto;
+}
+@media screen and (min-width:768px){
+  .container {
+    max-width: 720px;
+  }
+
+  .abouts_txt p {
+    padding-left: 30px;
+  }
+}
+@media screen and (min-width:992px){
+  .container {
+    max-width: 960px;
+  }
+
+}
+@media screen and (min-width:1200px){
+  .container {
+    max-width: 1140px;
+  }
+}
+@media screen and (max-width:767px) {
+  .menu-list li {
+    padding-top: 20px;
+  }
+}
+
+/*==============================================
+
+  Custom Column System
+
+================================================*/
+
+.flex_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (min-width: 768px) {
+  .flex_container {
+    flex-direction: row;
+  }
+}
+
+/*==============================================
+
+  COMMON STYLE
+
+================================================*/
+section:not(#mv) {
+  scroll-margin-top: var(--header-height);
+}
+.section_title {
+  font-size: 4rem;
+  text-align: center;
+  margin: 10rem 0;
+  letter-spacing: 0.2em;
+}
+
+/*==============================================
+
+  Header
+
+================================================*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #eee;
+  opacity: 0.7;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.header .flex_container {
+  height: var(--header-height);
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 32px;
+}
+
+.menu-list li {
+  float: left;
+  padding-right: 40px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.menu-list li a {
+  position: relative;
+  display: inline-block;
+  color: #000000;
+  text-decoration: none;
+}
+
+.menu-list li a::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #000000;
+  transition: transform 0.3s ease;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.menu-list li a:hover::after {
+  transform: scaleX(1);
+}
+
+/*==============================================
+
+  Main Visual
+
+================================================*/
+
+#mv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.mv_title {
+  font-size: 50px;
+  letter-spacing: 0.1em;
+}
+
+/* タイピングアニメーション */
+.typing-animation {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid #000;
+  white-space: nowrap;
+  animation:
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+  position: relative;
+  z-index: 10;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #000 }
+}
+
+/* フェードインアニメーション */
+.fade-in-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 3.5s; /* タイピングアニメーション後に開始 */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 装飾的な背景要素（オプション） */
+/* #mv::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent);
+  background-size: 20px 20px;
+  opacity: 0.1;
+  animation: backgroundMove 30s linear infinite;
+}
+
+@keyframes backgroundMove {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+} */
+
+/*==============================================
+
+  Abouts
+
+================================================*/
+#abouts {
+  clear: left;
+  justify-content: center;
+  align-items: center;
+}
+
+.abouts_img {
+  width: 50%;
+}
+
+.abouts_img img {
+  border-radius: 8px;
+}
+
+.abouts_title {
+  padding: 30px;
+  font-size: var(--font-l);
+}
+
+.abouts_txt {
+  width: 50%;
+  font-size: var(--font-m);
+}
+
+/*==============================================
+
+  Skills
+
+================================================*/
+
+#skills {
+  clear: left;
+}
+
+.skill {
+  width: calc(33.333% - 20px);  /* 3列で表示、余白考慮 */
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.skill_icon {
+  transition: transform 0.3s ease;  /* ホバーアニメーション用 */
+}
+
+.skill_icon:hover {
+  transform: translateY(-10px);  /* ホバー時に少し上に浮き上がる */
+}
+
+.skill_icon img {
+  margin: 0 auto;  /* 画像を中央寄せ */
+}
+
+.skill_icon p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .skill {
+    width: calc(50% - 20px);  /* タブレットサイズでは2列表示 */
+  }
+}
+
+@media (max-width: 480px) {
+  .skill {
+    width: calc(100% - 20px);  /* スマホサイズでは1列表示 */
+  }
+}
+
+/*==============================================
+
+  Works
+
+================================================*/
+#works {
+  min-height: 100vh;
+}
+
+.hamburger {
+  display: block;
+  width: 30px;
+  height: 20px;
+  position: relative;
+  z-index: 100;
+}
+
+.hamburger-line {
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: #333;
+  position: absolute;
+  transition: all 0.3s;
+}
+
+.hamburger-line:nth-child(1) {
+  top: 0;
+}
+
+.hamburger-line:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hamburger-line:nth-child(3) {
+  bottom: 0;
+}
+
+/* ハンバーガーメニューが開いているときのスタイル */
+.hamburger-line.open:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.hamburger-line.open:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-line.open:nth-child(3) {
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+/* メニューのスタイル */
+.menu {
+  position: fixed;
+  top: 60px;
+  right: -100%;
+  width: 100%;
+  height: calc(100vh - 60px);
+  background-color: white;
+  transition: all 0.3s;
+  z-index: 99;
+}
+
+.menu.open {
+  right: 0;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.menu-list li {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  margin: 0;
+  float: none;
+}
+
+@media (min-width: 768px) {
+  .menu {
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+  }
+
+  .menu-list {
+    padding-top: 0;
+    flex-direction: row;
+  }
+
+  .menu-list li {
+    width: auto;
+    padding: 0 20px;
+    float: left;
+  }
+}
+
+/* MVセクションのスタイル */
+.mv-section {
+  margin-top: 0;  /* 余白を削除 */
+  padding-top: 80px;  /* ヘッダーの高さ分だけパディングを追加 */
+}
+
+/* スマホサイズ用のメディアクエリ */
+@media (max-width: 768px) {
+  .typing-animation {
+    /* スマホ用の調整が必要な場合はここに追加 */
+    font-size: 24px; /* 例：フォントサイズの調整 */
+  }
+}
+
+.section-hidden {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 1s ease forwards;
+}
+
+.wave-animation {
+  background: linear-gradient(45deg, #4f46e5, #818cf8);
+  animation: wave 8s ease-in-out infinite;
+  background-size: 400% 400%;
+}
+
+.wave-animation-reverse {
+  background: linear-gradient(45deg, #818cf8, #4f46e5);
+  animation: wave 8s ease-in-out infinite reverse;
+  background-size: 400% 400%;
+}
+
+@keyframes wave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-wave {
+  animation: wave 8s linear infinite;
+}
+
+/* 左からのスライドインアニメーション */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 右からのスライドインアニメーション */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  opacity: 0;
+  animation: slideInLeft 1.8s ease forwards;
+}
+
+.slide-in-right {
+  opacity: 0;
+  animation: slideInRight 1.8s ease forwards;
+}
+
+/* ディレイ用のクラス */
+.delay-1 {
+  animation-delay: 3.2s;
+}
+
+.delay-2 {
+  animation-delay: 3.4s;
+}
+
+.delay-3 {
+  animation-delay: 3.6s;
+}
+
+/* サイバーパンク風グリッド背景 */
+.cyber-grid {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: gridMove 20s linear infinite;
+}
+
+/* サイバーライン */
+.cyber-lines {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px) 0 0,
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px) 0 0;
+  background-size: 40px 40px;
+}
+
+/* サイバーヘキサゴン */
+.cyber-hexagons {
+  background-color: transparent;
+  background-image: radial-gradient(circle at center center, transparent 0%, rgb(255, 255, 255) 99%),
+    repeating-linear-gradient(0deg, rgba(63, 63, 63, 0.2) 0px, rgba(63, 63, 63, 0.2) 1px, transparent 1px, transparent 6px);
+  background-size: 40px 40px;
+}
+
+/* グリッチエフェクト */
+.cyber-glitch {
+  position: relative;
+  text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+    0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  animation: glitch 500ms infinite;
+}
+
+.cyber-glitch::before,
+.cyber-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* カードのホバーエフェクト */
+.cyber-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+}
+
+/* スキルカードのアニメーション */
+.cyber-skill-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-skill-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  background: linear-gradient(45deg, #00f2fe, #4facfe) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 1;
+}
+
+/* アニメーションキーフレーム */
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+      0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  14% {
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+      0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+      0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75),
+      0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+      0.05em 0 0 rgba(0, 255, 0, 0.75),
+      0 -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+  100% {
+    text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
+      -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+      -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 20px;
+  }
+}
+
+
+
