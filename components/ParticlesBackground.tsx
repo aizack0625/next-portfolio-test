@@ -3,69 +3,10 @@ import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import type { Engine } from "tsparticles-engine";
-
-interface ParticlesOptions {
-  fullScreen?: {
-    enable: boolean;
-  };
-  particles?: {
-    number?: {
-      value?: number;
-      density?: {
-        enable?: boolean;
-        value_area?: number;
-        area?: number;
-      };
-    };
-    color?: {
-      value?: string | string[];
-    };
-    shape?: {
-      type?: string;
-    };
-    opacity?: {
-      value?: number;
-      random?: boolean;
-      animation?: {
-        enable?: boolean;
-        speed?: number;
-        minimumValue?: number;
-        sync?: boolean;
-      };
-    };
-    size?: {
-      value?: number;
-      random?: boolean;
-      animation?: {
-        enable?: boolean;
-        speed?: number;
-        minimumValue?: number;
-        sync?: boolean;
-      };
-    };
-    links?: {
-      enable?: boolean;
-      distance?: number;
-      color?: string;
-      opacity?: number;
-      width?: number;
-    };
-    move?: {
-      enable?: boolean;
-      speed?: number;
-      direction?: string;
-      random?: boolean;
-      straight?: boolean;
-      outModes?: {
-        default?: string;
-      };
-    };
-  };
-  [key: string]: Record<string, unknown> | undefined;
-}
+import type { ISourceOptions, MoveDirection, OutMode } from "tsparticles-engine";
 
 interface ParticlesBackgroundProps {
-  options?: ParticlesOptions;
+  options?: Partial<ISourceOptions>;
 }
 
 const ParticlesBackground = ({ options }: ParticlesBackgroundProps) => {
